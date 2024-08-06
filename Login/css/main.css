@@ -79,6 +79,15 @@ ul, li {
 	list-style-type: none;
 }
 
+.txtC {
+  color: white;
+  font-size: 12pt;
+  text-decoration: underline;
+}
+
+.txt1 {
+  font-size: 19pt;
+}
 
 /*---------------------------------------------*/
 input {
@@ -135,7 +144,7 @@ iframe {
 [ Utility ]*/
 .txt1 {
   font-family: Poppins-Regular;
-  font-size: 13px;
+  font-size: 15px;
   line-height: 1.5;
   color: #0F283E;
 }
@@ -147,6 +156,15 @@ iframe {
   color: #0F283E;
 }
 
+.seta > img {
+  width: 2.2vw;
+  margin-top: -30vh;
+  margin-left: -2vw;
+}
+
+.vLogo {
+  flex-direction: column;
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
@@ -193,6 +211,7 @@ iframe {
 [  ]*/
 .login100-pic {
   width: 316px;
+  margin-top: -5vh;
 }
 
 .login100-pic img {
@@ -355,6 +374,9 @@ iframe {
 /*------------------------------------------------------------------
 [ Responsive ]*/
 
+.logoE {
+  display: none;
+}
 
 
 @media (max-width: 992px) {
@@ -376,7 +398,13 @@ iframe {
     padding: 100px 80px 33px 80px;
   }
 
-  .login100-pic {
+  .logoE {
+    width: auto;
+    margin-left: 24vw;
+    display: block;
+  }
+
+  .logoL {
     display: none;
   }
 
@@ -388,6 +416,22 @@ iframe {
 @media (max-width: 576px) {
   .wrap-login100 {
     padding: 100px 15px 33px 15px;
+  }
+
+  .logoE {
+    width: auto;
+    margin-left: 29vw;
+    display: block;
+  }
+
+  form {
+    margin-top: 7vh;
+  }
+
+  .seta > img {
+    width: 5vw;
+    margin-top: -20vh;
+    margin-left: 0.6vw;
   }
 }
 
