@@ -33,6 +33,11 @@ a {
     text-decoration: none;
 }
 
+.lp {
+    text-decoration: underline;
+    text-decoration-color: #001eff;
+}
+
 body {
     background-image: linear-gradient(to left, #21C7BD, #095D81);
 }
