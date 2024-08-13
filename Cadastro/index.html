@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V1</title>
+	<title>SmartPark</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -20,6 +20,49 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
+	<script src="https://accounts.google.com/gsi/client" async></script>
+
+	<script src="https://unpkg.com/jwt-decode/build/jwt-decode.js"></script>
+
+	<script> function handleCredentialResponse(response) {
+		const data = jwt_decode(response.credential)
+
+		console.log(data)
+	  
+		/*fullName.textContent = data.name
+		sub.textContent = data.sub
+		given_name.textContent = data.given_name
+		family_name.textContent = data.family_name
+		email.textContent = data.email
+		verifiedEmail.textContent = data.email_verified
+		picture.setAttribute("src", data.picture)*/
+	  }
+	  
+	  window.onload = function () {
+	  
+		google.accounts.id.initialize({
+		  client_id: "513468364695-1c8ih1assgdpivmqrj7ghr57368q1pvi.apps.googleusercontent.com",
+		  callback: handleCredentialResponse
+		});
+	  
+		google.accounts.id.renderButton(
+		  document.getElementById("buttonDiv"), {
+		  theme: "filled_black",
+		  size: "large",
+		  type: "standard",
+		  shape: "pill",
+		  locale: "pt-BR",
+		  logo_alignment: "left",
+		} // customization attributes
+		);
+	  
+		google.accounts.id.prompt(); // also display the One Tap dialog
+	  }
+	  </script>
+
+
+
 </head>
 <body>
 	
@@ -61,12 +104,14 @@
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					
+
 					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							Cadastrar
+					<button type="submit" onclick=" return false" class="login100-form-btn">
+							Login
 						</button>
 					</div>
+					
+					
 
 					<div class="text-center p-t-12">
 						<span class="txt1">
@@ -75,6 +120,12 @@
 						<a class="txtC" href="../Login/index.html">
 							aqui
 						</a>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<script src="https://accounts.google.com/gsi/client" async></script>
+    
+    <div id="buttonDiv"></div>
 					</div>
 
 					<div class="text-center p-t-136">
