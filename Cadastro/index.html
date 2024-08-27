@@ -35,7 +35,7 @@
 				</div>
 			</div>
 
-				<form class="login100-form validate-form" method="post" action="php/usuario.php">
+				<form class="login100-form validate-form" method="post" action="php/models/usuario.php" id="cadastro-form" onsubmit="return verificarSenha()">
 					<span class="login100-form-title">
 						Cadastro
 					</span>
@@ -49,14 +49,14 @@
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Senha">
+						<input class="input100" type="password" name="pass" id="pass" placeholder="Senha" >
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
 					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Repita a senha">
+						<input class="input100" type="password" name="passconfirm" id="passconfirm" placeholder="Repita a senha" >
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
@@ -64,7 +64,7 @@
 					</div>
 
 					<div class="container-login100-form-btn">
-					<button type="submit" onclick=" return false" class="login100-form-btn">
+					<button type="submit"  class="login100-form-btn" >
 							Cadastro
 						</button>
 					</div>
@@ -91,7 +91,7 @@
 						</a>
 					</div>
 				</form>
-			</div>
+			</div>''
 		</div>
 	</div>
 	
@@ -114,8 +114,7 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	
 
 </body>
 </html>
-
-<!--Se as senhas forem diferentes ela é aceita, caso contrário tem que fazer uma função para impedir isso com js-->

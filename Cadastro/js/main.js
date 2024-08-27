@@ -56,3 +56,18 @@
     
 
 })(jQuery);
+
+
+function verificarSenha(){
+    let Senha = document.getElementById("pass").value;
+    let SenhaConfirmacao = document.getElementById("passconfirm").value;
+    if (Senha != SenhaConfirmacao)
+        {alert('As senhas não coincidem.');
+            return false; // Impede o envio do formulário
+        }
+      
+        // Se as senhas forem iguais, permite o envio do formulário
+        return true;
+      
+}
+    
