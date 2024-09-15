@@ -1,42 +1,36 @@
 <?php 
 
-//redirecionamento automático da página
-include "..\config\database.php";
-//linka o site com o banco de dados
+// Inclui o arquivo de configuração do banco de dados
+include "../config/database.php";
 
-// Verifica se o formulário foi enviado usando o método POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Verifica se os campos esperados estão definidos e não vazios
-    if (isset($_POST["pass"]) && isset($_POST["email"]) ) {
- 
 
-    
-$email = $_POST['email'];
-$senha = $_POST['senha']; 
+        $email = $_POST['email'];
+        $senha = $_POST['pass']; 
+       
 
-// Verifica se o e-mail já existe no banco de dados
-$sql = "SELECT COUNT(*) FROM usuarios WHERE email = $email";
-$stmt = $pdo->prepare($sql);
-$stmt->bindParam(':email', $email);
-$stmt->execute();
-$email_existe = $stmt->fetchColumn();
+        // Verifica se o e-mail já existe no banco de dados
+        $sql = "SELECT COUNT(*) AS total FROM usuario WHERE Email = '$email'";
+        $result = $conn->query($sql);  // Executa a consulta usando MySQLi
 
-if ($email_existe > 0) {
-    // Se o e-mail já estiver cadastrado, redireciona para login.html com mensagem de erro
-    header("Location: ../../../Login/index.html?erro=email_existente");
-    exit();
-} else {
-    // Se o e-mail não estiver cadastrado, cria uma nova conta
-    $sql = "INSERT INTO usuarios ( email, senha) VALUES ( $email, $senha)";
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':senha', $senha); // Armazenando a senha diretamente
+        if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            if ($row['total'] > 0) {
+                // Se o e-mail já estiver cadastrado, redireciona para login.html com mensagem de erro
+                header("Location: ../../../Login/index.html");
+                exit();
+            }
+        }
 
-    if ($stmt->execute()) {
-        // Redireciona para a página padrão após o cadastro bem-sucedido
-        header("Location:  ../../Painel de Controle/index.html");
-        exit();
-    } 
-}
-?>
+        // Se o e-mail não estiver cadastrado, cria uma nova conta
+        $sql = "INSERT INTO usuario (Email, Senha) VALUES ('$email', '$senha')";
+        if ($conn->query($sql) === TRUE) {
+            // Redireciona para a página padrão após o cadastro bem-sucedido
+            header("Location: ../../../Painel de Controle/index.html");
+            exit();
+        } else {
+            echo "Erro ao inserir dados: " . $conn->error;
+        }
+
+// Fecha a conexão com o banco de dados
+$conn->close();
 ?>
