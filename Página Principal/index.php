@@ -30,14 +30,14 @@
                     <a href="#testimonials">Avaliações</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Página Principal/index.html">Página cliente</a>
+                    <a href="../Página Principal/index.php">Página cliente</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Painel de controle/index.html">Página empresa</a>
+                    <a href="../Painel de controle/index.php">Página empresa</a>
                 </li>
             </ul>
 
-            <a href="../Registro/index.html" ><button class="btn-default" >
+            <a href="../Registro/index.php" ><button class="btn-default" >
                 Concluir cadastro
             </button></a>
 
@@ -58,11 +58,11 @@
                     <a href="#testimonials">Avaliações</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Página Principal/index.html">Página Principal</a>
+                    <a href="../Página Principal/index.php">Página Principal</a>
                 </li>
             </ul>
 
-            <a href="../Registro/index.html"><button class="btn-default">
+            <a href="../Registro/index.php"><button class="btn-default">
                 Concluir cadastro
             </button></a>
         </div>

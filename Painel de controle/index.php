@@ -33,11 +33,11 @@
                     <a href="#testimonials">Avaliações</a>
                 </li>
                 <li class="nav-item">
-                    <a href="../Página Principal/index.html">Página cliente</a>
+                    <a href="../Página Principal/index.php">Página cliente</a>
                 </li>
             </ul>
 
-            <a href="../Registro/index.html" ><button class="btn-default" >
+            <a href="../Registro/index.php" ><button class="btn-default" >
                 Trocar gerente
             </button></a>
 
@@ -127,7 +127,7 @@
                 <p>Nome:</p>
             </div>
             <div class="dish">
-                <p>Vagas:</p>
+                <p>Vagas: </p>
             </div>
             <div class="dish">
                 <p>Vagas totais preferênciais:</p>

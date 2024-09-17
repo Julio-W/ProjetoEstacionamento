@@ -34,7 +34,7 @@
 				</div>
 			</div>
 
-				<form class="login100-form validate-form"  action="php/models/usuario.php" method="post">
+				<form class="login100-form validate-form">
 					<span class="login100-form-title">
 						Login
 					</span>
@@ -46,36 +46,24 @@
 							<i class="fa fa-envelope" aria-hidden="true"></i>
 						</span>
 					</div>
-
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Senha">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
 					
 					<div class="container-login100-form-btn">
-						<a ><button type="submit"  class="login100-form-btn">
-							Login
-						</button></a>
+						<button onclick=" return false" class="login100-form-btn">
+							Receber código
+						</button>
 					</div>
 
 					<div class="text-center p-t-12">
 						<span class="txt1">
-							Ou cadastre-se
+							Ou faça login
 						</span>
-						<a class="txtC" href="../Cadastro/index.html">
+						<a class="txtC" href="../Login/index.php">
 							aqui
 						</a>
 					</div>
 
 					<div class="text-center p-t-136">
-						<span class="txt1">
-							Redefina a sua senha
-						</span>
-						<a class="txtC" href="../Forgot/index.html">
-							aqui
+						<a class="txt2" href="#">
 						</a>
 					</div>
 				</form>
@@ -101,12 +89,7 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="js/alertas.js"></script>
-
-
-<!--===============================================================================================-->
 	<script src="js/main.js"></script>
-
 
 </body>
 </html>

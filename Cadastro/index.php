@@ -20,6 +20,7 @@
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
 </head>
 <body>
 	
@@ -27,62 +28,62 @@
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="vLogo">
-					<a href="../Página Principal/index.html" class="seta"><img src="../images/botao-de-seta-para-a-esquerda-do-teclado.png" alt=""></a>
-					<div class="login100-pic js-tilt" data-tilt>
-						<a href="../index.html" ><img src="../images/logo escrita sem fundo.png" alt="IMG" class="logoL"></a>
-						<a href="../Página Principal/index.html" ><img src="../images/texto-logo.png" alt="IMG" class="logoE"></a>
-					</div>
+				<a href="../index.html" class="seta"><img src="../images/botao-de-seta-para-a-esquerda-do-teclado.png" alt=""></a>
+				<div class="login100-pic js-tilt" data-tilt>
+					<a href="../index.html" ><img src="../images/logo escrita sem fundo.png" alt="IMG" class="logoL"></a>
+					<a href="../index.html" ><img src="../images/texto-logo.png" alt="IMG" class="logoE"></a>
 				</div>
+			</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="post" action="php/models/usuario.php" id="cadastro-form" onsubmit="return verificarSenha()">
 					<span class="login100-form-title">
 						Cadastro
 					</span>
 
-					
+					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input class="input100" type="text" name="email" placeholder="Email">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
 
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="nome" placeholder="Nome">
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="pass" id="pass" placeholder="Senha" >
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="cpf" \
-						pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" \
-						title="Digite um CPF no formato: xxx.xxx.xxx-xx" required placeholder="CPF">
+					<div class="wrap-input100 validate-input" data-validate = "Password is required">
+						<input class="input100" type="password" name="passconfirm" id="passconfirm" placeholder="Repita a senha" >
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
-					<div class="wrap-input100 validate-input">
-						<input type="tel" id="telefone" class="input100" required placeholder="Nº telefone" >
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="number" placeholder="Idade" required>
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
-					
+
 					<div class="container-login100-form-btn">
-						<button onclick=" return false" class="login100-form-btn">
-							Concluir cadasto
+					<button type="submit"  class="login100-form-btn" >
+							Cadastro
 						</button>
 					</div>
+					
+					
 
 					<div class="text-center p-t-12">
 						<span class="txt1">
+							Ou faça login
 						</span>
-						<a class="txt2" href="#">
+						<a class="txtC" href="../Login/index.php">
+							aqui
 						</a>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<script src="https://accounts.google.com/gsi/client" async></script>
+    
+    <div id="buttonDiv"></div>
 					</div>
 
 					<div class="text-center p-t-136">
@@ -90,7 +91,7 @@
 						</a>
 					</div>
 				</form>
-			</div>
+			</div>''
 		</div>
 	</div>
 	
@@ -113,6 +114,7 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+	
 
 </body>
 </html>
