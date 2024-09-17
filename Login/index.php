@@ -34,13 +34,9 @@
 				</div>
 			</div>
 
-				<form class="login100-form validate-form"  action="php/models/usuario.php" method="post">
+				<form class="login100-form validate-form"  action="../Login/index.php" method="post">
 					<span class="login100-form-title">
 						Login
-					</span>
-
-					<span class="login100-form-title" id="resultado"></span>
-						oi:
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -105,7 +101,7 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="js/alertas.js"></script>
+	
 
 
 <!--===============================================================================================-->
@@ -114,3 +110,37 @@
 
 </body>
 </html>
+
+<?php
+error_reporting(0);
+include "php\config\database.php";
+
+$email = $_POST["email"];
+$senha = password_hash($_POST['pass'],PASSWORD_DEFAULT); 
+
+// Verifica se o e-mail existe no banco de dados
+$sql = "SELECT senha FROM usuario WHERE email = '$email'";
+$result = $conn->query($sql);  // Executa a consulta
+
+if ($result->num_rows > 0) {
+    // O e-mail foi encontrado no banco de dados
+    $row = $result->fetch_assoc();
+	echo "aaaaaa";
+
+    // Compara a senha fornecida com a senha do banco de dados
+    if ($senha == $row['senha']) {
+		header("Location: ../Página Principal/index.php");
+		exit();
+    } else {
+        echo "<script>alert('A senha está incorreta')<script>";
+       
+    }
+} else {
+    // O e-mail não foi encontrado
+	echo "<script>alert('Esse email não foi cadastrado')<script>";
+
+}
+
+// Fecha a conexão com o banco de dados
+$conn->close();
+?>
