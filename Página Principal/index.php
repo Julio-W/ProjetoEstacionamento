@@ -1,3 +1,14 @@
+<?php
+session_start();
+  if ($_SESSION['logado'] === false || $_SESSION['logado'] === null ) {
+   
+    
+    // Redireciona para a página padrão após o cadastro bem-sucedido
+    header("Location: ../Login/index.php");
+    exit();}
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

@@ -1,3 +1,46 @@
+
+<?php
+error_reporting(0);
+include "php\config\database.php";
+
+
+$email = $_POST["email"];
+$senha = $_POST["pass"]; // Não hash aqui, faremos a comparação com o hash armazenado
+
+// Prepare o statement para evitar injeção de SQL
+$stmt = $conn->prepare("SELECT senha FROM usuario WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    if (password_verify($senha, $row['senha'])) {
+        // Autenticação bem-sucedida, iniciar sessão e redirecionar
+	
+        session_start();
+      
+		$_SESSION['email'] = $email;
+		$_SESSION['logado'] = true;
+		$_SESSION['usuario_id'] = $row['ID']; 
+
+
+        header("Location: ../Página Principal/index.php");
+        exit();
+    } else {
+        echo "<script>alert('Senha incorreta.');</script>";
+    }
+} elseif ($email != "") 
+	{
+    echo "<script>alert('Email não cadastrado.');</script>";
+}
+
+$stmt->close();
+$conn->close();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -110,37 +153,3 @@
 
 </body>
 </html>
-
-<?php
-error_reporting(0);
-include "php\config\database.php";
-
-$email = $_POST["email"];
-$senha = password_hash($_POST['pass'],PASSWORD_DEFAULT); 
-
-// Verifica se o e-mail existe no banco de dados
-$sql = "SELECT senha FROM usuario WHERE email = '$email'";
-$result = $conn->query($sql);  // Executa a consulta
-
-if ($result->num_rows > 0) {
-    // O e-mail foi encontrado no banco de dados
-    $row = $result->fetch_assoc();
-	echo "aaaaaa";
-
-    // Compara a senha fornecida com a senha do banco de dados
-    if ($senha == $row['senha']) {
-		header("Location: ../Página Principal/index.php");
-		exit();
-    } else {
-        echo "<script>alert('A senha está incorreta')<script>";
-       
-    }
-} else {
-    // O e-mail não foi encontrado
-	echo "<script>alert('Esse email não foi cadastrado')<script>";
-
-}
-
-// Fecha a conexão com o banco de dados
-$conn->close();
-?>
