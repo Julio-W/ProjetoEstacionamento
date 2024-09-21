@@ -25,7 +25,7 @@ include "../config/database.php";
         $sql = "INSERT INTO usuario (Email, Senha) VALUES ('$email', '$senha')";
         if ($conn->query($sql) === TRUE) {
             // Redireciona para a página padrão após o cadastro bem-sucedido
-            header("Location: ../../../Painel de Controle/index.php");
+            header("Location: ../../../Página Principal/index.php");
             exit();
         } else {
             echo "Erro ao inserir dados: " . $conn->error;
