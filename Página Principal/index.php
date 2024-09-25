@@ -6,6 +6,10 @@ session_start();
     // Redireciona para a página padrão após o cadastro bem-sucedido
     header("Location: ../Login/index.php");
     exit();}
+
+    if (isset($_GET['redirecionado']) && $_GET['redirecionado'] === 'sim') {
+    echo "<script>alert('Privilégio para acesso inválido');</script>";
+}
 ?>
 
 
