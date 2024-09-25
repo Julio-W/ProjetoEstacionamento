@@ -9,7 +9,11 @@ session_start();
 
     if (isset($_GET['redirecionado']) && $_GET['redirecionado'] === 'sim') {
     echo "<script>alert('Privilégio para acesso inválido');</script>";
+
 }
+
+
+
 ?>
 
 
@@ -53,7 +57,7 @@ session_start();
             </ul>
 
             <a href="../Registro/index.php" ><button class="btn-default" >
-                Concluir cadastro
+                Atualizar cadastro
             </button></a>
 
             <button id="mobile_btn">
@@ -78,6 +82,7 @@ session_start();
             </ul>
 
             <a href="../Registro/index.php"><button class="btn-default">
+               
                 Concluir cadastro
             </button></a>
         </div>
@@ -240,9 +245,17 @@ session_start();
 
                 <div class="dish-price">
                     <a target="_blank" class="lp" href="https://maps.app.goo.gl/Uavk1efbGezaWJkc7"><button class="btn-default">Abrir no mapa</button></a>
+                   
                 </div>
             </div>
     </section>
+    <a target="_blank" class="lp" href="FormVaga/index.php" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+    <button class="btn-default" style="padding: 10px 20px; box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">
+        Garantir Vaga
+    </button>
+</a>
+
+
 
     <section id="testimonials">
         <img src="images/pensativo.png" id="testimonial_chef" alt="">

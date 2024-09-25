@@ -1,13 +1,13 @@
 <?php
 session_start();
-  if ($_SESSION['gerente'] === false || $_SESSION['gerente'] === null ) {
+  #if ($_SESSION['gerente'] === false || $_SESSION['gerente'] === null ) {
    
     
     // Redireciona para a página padrão se não for gerente
-    header("Location: ../Página Principal/index.php?redirecionado=sim");
-    exit();
-  }
-                                                                        
+   #header("Location: ../Página Principal/index.php?redirecionado=sim");
+  #  exit();
+ # }
+                   ?>                                                     
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

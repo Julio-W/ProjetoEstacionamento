@@ -15,8 +15,10 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] === false) {
 // Obtém o ID do usuário logado
 $idUsuario = $_SESSION['usuario_id'];
 
-
-
+// Verifica se o formulário foi submetido
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome']) && isset($_POST['cpf']) && isset($_POST['telefone']) && isset($_POST['datadenascimento'])) {
+    
+    // Coleta os dados enviados pelo usuário
     $nome = $_POST['nome'];
     $cpf = $_POST['cpf'];
     $telefone = $_POST['telefone'];
@@ -32,23 +34,24 @@ $idUsuario = $_SESSION['usuario_id'];
 
         // Executa a consulta
         if ($stmt->execute()) {
-           
+            $_SESSION["CadastroFinalizado"] = true;
+            header("Location: ../Página Principal/index.php");
+            exit();
         } else {
             echo "Erro ao atualizar dados: " . $stmt->error;
         }
 
         // Fecha o statement
         $stmt->close();
-		$_SESSION["CadastroFinalizado"] = true;
-		header("Location: ../Página Principal/index.php");
-		exit();
     } else {
         echo "Erro ao preparar a consulta: " . $conn->error;
     }
+}
 
 // Fecha a conexão com o banco de dados
 $conn->close();
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,7 +117,7 @@ $conn->close();
                     </div>
 
                     <div class="container-login100-form-btn">
-                        <button class="login100-form-btn" type="submit">Concluir cadastro</button>
+                        <button class="login100-form-btn" type="submit">Atualizar cadastro</button>
                     </div>
                 </form>
             </div>
