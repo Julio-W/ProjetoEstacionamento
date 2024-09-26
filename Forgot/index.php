@@ -1,3 +1,8 @@
+<?php
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +41,7 @@
 
 				<form class="login100-form validate-form">
 					<span class="login100-form-title">
-						Login
+						Redefinir senha
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -64,6 +69,15 @@
 
 					<div class="text-center p-t-136">
 						<a class="txt2" href="#">
+						</a>
+					</div>
+
+					<div class="text-center p-t-136">
+						<span class="txt1">
+							Alterar Senha
+						</span>
+						<a class="txtC" href="Redefinir/index.php">
+							aqui
 						</a>
 					</div>
 				</form>

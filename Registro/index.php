@@ -119,6 +119,15 @@ $conn->close();
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn" type="submit">Atualizar cadastro</button>
                     </div>
+
+                    <div class="text-center p-t-136">
+						<span class="txt1">
+							
+						</span>
+						<a class="txtC" href="../Forgot/index.php">
+							Sou Empresa
+						</a>
+					</div>
                 </form>
             </div>
         </div>
