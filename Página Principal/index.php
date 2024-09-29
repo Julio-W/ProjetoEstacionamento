@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+include("php/config/database.php");
+
   if ($_SESSION['logado'] === false || $_SESSION['logado'] === null ) {
    
     
@@ -11,6 +14,11 @@ session_start();
     echo "<script>alert('Privilégio para acesso inválido');</script>";
 
 }
+//teste para ver se a classe é igual a true
+      //  if ($_SESSION['classe'] === true) {
+      //      echo '<script>alert("O Valor é válido")</script>';
+      //      # code...
+      //  }
 
 
 
@@ -249,11 +257,12 @@ session_start();
                 </div>
             </div>
     </section>
-    <a target="_blank" class="lp" href="FormVaga/index.php" style="display: flex; justify-content: center; align-items: center; text-align: center;">
+    <a class="lp" href="FormVaga/index.php" style="display: flex; justify-content: center; align-items: center; text-align: center;">
     <button class="btn-default" style="padding: 10px 20px; box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);">
         Garantir Vaga
     </button>
 </a>
+
 
 
 

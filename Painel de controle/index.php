@@ -1,12 +1,12 @@
 <?php
 session_start();
-  #if ($_SESSION['gerente'] === false || $_SESSION['gerente'] === null ) {
+  if ($_SESSION['classe'] === false || $_SESSION['classe'] === null ) {
    
     
     // Redireciona para a página padrão se não for gerente
-   #header("Location: ../Página Principal/index.php?redirecionado=sim");
-  #  exit();
- # }
+   header("Location: ../Página Principal/index.php?redirecionado=sim");
+    exit();
+  }
                    ?>                                                     
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -34,7 +34,7 @@ session_start();
                     <a href="#home">Contato</a>
                 </li>
                 <li class="nav-item">
-                    <a href="./Form dados/index.html">Dados do estacionamento</a>
+                    <a href="./Form dados/index.php">Dados do estacionamento</a>
                 </li>
                 <li class="nav-item">
                     <a href="#menu">Status</a>

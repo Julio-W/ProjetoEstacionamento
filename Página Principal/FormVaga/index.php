@@ -21,7 +21,7 @@ if ($_SESSION['logado'] === false || $_SESSION['logado'] === null ) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="shortcut icon" href="../images/favicon.png" type="image/x-icon">
+	<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
@@ -38,6 +38,7 @@ if ($_SESSION['logado'] === false || $_SESSION['logado'] === null ) {
 <!--===============================================================================================-->
 
 <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Autocomplete Endereço</title>
@@ -62,10 +63,10 @@ if ($_SESSION['logado'] === false || $_SESSION['logado'] === null ) {
 		<div class="container-login100">
 			<div class="wrap-login100">
 				<div class="vLogo">
-				<a href="../index.html" class="seta"><img src="../images/botao-de-seta-para-a-esquerda-do-teclado.png" alt=""></a>
+				<a href="../index.php" class="seta"><img src="../images/botao-de-seta-para-a-esquerda-do-teclado.png" alt=""></a>
 				<div class="login100-pic js-tilt" data-tilt>
-					<a href="../index.html" ><img src="../images/logo escrita sem fundo.png" alt="IMG" class="logoL"></a>
-					<a href="../index.html" ><img src="../images/texto-logo.png" alt="IMG" class="logoE"></a>
+					<a href="../../index.html" ><img src="../images/logo escrita sem fundo.png" alt="IMG" class="logoL"></a>
+					<a href="../../index.html" ><img src="../images/texto-logo.png" alt="IMG" class="logoE"></a>
 				</div>
 			</div>
 
@@ -74,186 +75,178 @@ if ($_SESSION['logado'] === false || $_SESSION['logado'] === null ) {
 						Reserva de Vaga
 					</span>
 
+
+
+
+
+
+<!-- Inclusão do jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<div class="wrap-input100 validate-input">
+    <select class="input100" name="estado" id="estado" required>
+        <option value="" disabled selected>Selecione o estado</option>
+        <option value="AC">AC - Acre</option>
+        <option value="AL">AL - Alagoas</option>
+        <option value="AP">AP - Amapá</option>
+        <option value="AM">AM - Amazonas</option>
+        <option value="BA">BA - Bahia</option>
+        <option value="CE">CE - Ceará</option>
+        <option value="DF">DF - Distrito Federal</option>
+        <option value="ES">ES - Espírito Santo</option>
+        <option value="GO">GO - Goiás</option>
+        <option value="MA">MA - Maranhão</option>
+        <option value="MT">MT - Mato Grosso</option>
+        <option value="MS">MS - Mato Grosso do Sul</option>
+        <option value="MG">MG - Minas Gerais</option>
+        <option value="PA">PA - Pará</option>
+        <option value="PB">PB - Paraíba</option>
+        <option value="PR">PR - Paraná</option>
+        <option value="PE">PE - Pernambuco</option>
+        <option value="PI">PI - Piauí</option>
+        <option value="RJ">RJ - Rio de Janeiro</option>
+        <option value="RN">RN - Rio Grande do Norte</option>
+        <option value="RS">RS - Rio Grande do Sul</option>
+        <option value="RO">RO - Rondônia</option>
+        <option value="RR">RR - Roraima</option>
+        <option value="SC">SC - Santa Catarina</option>
+        <option value="SP">SP - São Paulo</option>
+        <option value="SE">SE - Sergipe</option>
+        <option value="TO">TO - Tocantins</option>
+    </select>
+    <span class="focus-input100"></span>
+</div>
+
+<div class="wrap-input100 validate-input">
+    <select class="input100" name="cidade" id="cidade" disabled>
+        <option value="">Carregando cidades...</option>
+    </select>
+    <span class="focus-input100"></span>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#estado').change(function() {
+            var estado = $(this).val();
+            $('#cidade').html('<option value="">Carregando cidades...</option>'); // Mostrar mensagem de carregamento
+            $('#cidade').prop('disabled', true); // Desabilitar o campo de cidade enquanto carrega
+            $.ajax({
+                url: "php/models/cidade.php",
+                data: { estado: estado },
+                success: function(data) {
+                    $('#cidade').html(data);
+                    $('#cidade').prop('disabled', false); // Reabilitar o campo de cidade
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="wrap-input100 validate-input">
+    <select class="input100" name="estacionamento" id="estacionamento" disabled>
+        <option value="">Selecione a cidade</option>
+    </select>
+    <span class="focus-input100"></span>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('#estado').change(function() {
+            var estado = $(this).val();
+            $('#cidade').html('<option value="">Carregando cidades...</option>'); // Mostrar mensagem de carregamento
+            $('#cidade').prop('disabled', true); // Desabilitar o campo de cidade enquanto carrega
+            $.ajax({
+                url: "buscar_cidades.php",
+                data: { estado: estado },
+                success: function(data) {
+                    $('#cidade').html(data);
+                    $('#cidade').prop('disabled', false); // Reabilitar o campo de cidade
+                }
+            });
+        });
+
+        $('#cidade').change(function() {
+            var cidade = $(this).val();
+            $('#estacionamento').html('<option value="">Carregando estacionamentos...</option>'); // Mostrar mensagem de carregamento
+            $('#estacionamento').prop('disabled', true); // Desabilitar o campo de estacionamento enquanto carrega
+            $.ajax({
+                url: "php/models/estacionamento.php", // O novo arquivo PHP que iremos criar
+                data: { cidade: cidade },
+                success: function(data) {
+                    $('#estacionamento').html(data);
+                    $('#estacionamento').prop('disabled', false); // Reabilitar o campo de estacionamento
+                }
+            });
+        });
+    });
+</script>
+
+
+
+
+
+
+
+          <div class="nomeinput">
+            Horário de entrada
+          </div>
+        
 					<div class="wrap-input100 validate-input">
-						<input class="input100" type="text" name="nome" placeholder="Nome">
+						<input class="input100" type="time" name="entrada" placeholder="Horário de entrada">
+						<span class="focus-input100"></span>
+					</div>
+          <div class="nomeinput">
+            Horário de saida
+          </div>
+<!-- Eu sei, esses nomes estão feios e conflitam com a página,
+  mas não achei uma forma melhor, resolve para mim depois, pfv... (ㆆ_ㆆ)-->
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="time" name="saida" placeholder="Horário de saída">
 						<span class="focus-input100"></span>
 					</div>
 
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="number" name="vagas" placeholder="Vagas">
-						<span class="focus-input100"></span>
-					</div>
-					<div class="wrap-input100 validate-input">
-						<input class="input100" type="number" name="vagasP" placeholder="Vagas preferênciais">
-						<span class="focus-input100"></span>
-					</div>
+          <div class="wrap-input100 validate-input">
+    <select class="input100" name="veiculo">
+        <option value="" disabled selected>Tipo de veículo</option>
+        <option value="moto">Moto</option>
+        <option value="carro">Carro</option>
+        <option value="caminhonete">Caminhonete</option>
+        <option value="caminhao">Caminhão</option>
+    </select>
+    <span class="focus-input100"></span>
+</div>
+<div class="wrap-input100 validate-input">
+    <input class="input100" type="text" name="placa" placeholder="Placa do veículo"
+           pattern="^[A-Z]{3}-?\d{4}$|^[A-Z]{3}\d{1}[A-Z]{1}\d{2}$"
+         
+           required>
+    <span class="focus-input100"></span>
+</div>
+
+<div class="container-login100-form-btn">
+			<a href="../Página Principal/index.php" ><button type="submit" onclick=" return false" class="login100-form-btn">
+				Confirmar
+			</button></a>
+		</div>
 					
 					</form>	
 
 					
     
   
-    <div id="fade" class="hide">
-      <div id="loader" class="spinner-border text-info hide" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <div id="message" class="hide">
-        <div class="alert alert-light" role="alert">
-          <h4>Mensagem:</h4>
-          <p></p>
-          <button id="close-message" type="button" class="btn btn-secondary">
-            Fechar
-          </button>
-        </div>
-      </div>
-    </div>
-    <div id="order-form-container" class="container p-6 my-md-4 px-md-0">
-      <div id="steps" class="mb-md-3 pb-md-3">
-        <div class="line"></div>  
-        
-      </div>
-      <div id="form-header">
-        <h2>Coloque o endereço do seu estacionamento</h2>
-      </div>
-      <form id="address-form">
-        <div class="row mb-3">
-          <div class="form-floating">
-            <input
-              type="text"
-              class="form-control shadow-none"
-              id="cep"
-              name="cep"
-              placeholder="Digite o seu CEP"
-              maxlength="8"
-              minlength="8"
-              required
-            />
-            <label for="cep">Digite o seu CEP</label>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-12 col-sm-6 mb-3 mb-md-0 form-floating">
-            <input
-              type="text"
-              class="form-control shadow-none"
-              id="address"
-              name="address"
-              placeholder="Rua"
-              disabled
-              required
-              data-input
-            />
-            <label for="address">Rua</label>
-          </div>
-          <div class="col-12 col-sm-6 form-floating">
-            <input
-              type="text"
-              class="form-control shadow-none"
-              id="number"
-              name="number"
-              placeholder="Digite o número da residência"
-              disabled
-              required
-              data-input
-            />
-            <label for="number">Digite o número</label>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-12 col-sm-6 mb-3 mb-md-0 form-floating">
-            <input
-              type="text"
-              class="form-control shadow-none"
-              id="complement"
-              name="complement"
-              placeholder="Digite o complemento"
-              disabled
-              data-input
-            />
-            <label for="complement">Digite o complemento</label>
-          </div>
-          <div class="col-12 col-sm-6 form-floating">
-            <input
-              type="text"
-              class="form-control shadow-none"
-              id="neighborhood"
-              name="neighborhood"
-              placeholder="Bairro"
-              disabled
-              required
-              data-input
-            />
-            <label for="neighborhood">Bairro</label>
-          </div>
-        </div>
-        <div class="row mb-3">
-          <div class="col-12 col-sm-6 mb-3 mb-md-0 form-floating">
-            <input
-              type="text"
-              class="form-control shadow-none"
-              id="city"
-              name="city"
-              placeholder="Cidade"
-              disabled
-              required
-              data-input
-            />
-            <label for="city">Cidade</label>
-          </div>
-          <div class="col-12 col-sm-6 mb-3">
-            <select
-              class="form-select shadow-none"
-              id="region"
-              disabled
-              required
-              data-input
-            >
-              <option selected>Estado</option>
-              <option value="AC">Acre</option>
-              <option value="AL">Alagoas</option>
-              <option value="AP">Amapá</option>
-              <option value="AM">Amazonas</option>
-              <option value="BA">Bahia</option>
-              <option value="CE">Ceará</option>
-              <option value="DF">Distrito Federal</option>
-              <option value="ES">Espírito Santo</option>
-              <option value="GO">Goiás</option>
-              <option value="MA">Maranhão</option>
-              <option value="MT">Mato Grosso</option>
-              <option value="MS">Mato Grosso do Sul</option>
-              <option value="MG">Minas Gerais</option>
-              <option value="PA">Pará</option>
-              <option value="PB">Paraíba</option>
-              <option value="PR">Paraná</option>
-              <option value="PE">Pernambuco</option>
-              <option value="PI">Piauí</option>
-              <option value="RJ">Rio de Janeiro</option>
-              <option value="RN">Rio Grande do Norte</option>
-              <option value="RS">Rio Grande do Sul</option>
-              <option value="RO">Rondônia</option>
-              <option value="RR">Roraima</option>
-              <option value="SC">Santa Catarina</option>
-              <option value="SP">São Paulo</option>
-              <option value="SE">Sergipe</option>
-              <option value="TO">Tocantins</option>
-            </select>
-          </div>
-        </div>
-        <div class="container-login100-form-btn">
-			<a href="../Página Principal/index.html" ><button type="submit" onclick=" return false" class="login100-form-btn">
-				Confirmar
-			</button></a>
-		</div>
-      </form>
-    </div>
-  
-
-
-				
-			</div>
-		</div>
-	</div>
-	
 	
 
 	

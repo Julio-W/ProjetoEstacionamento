@@ -19,8 +19,28 @@ if ($result->num_rows > 0) {
         $_SESSION['email'] = $email;
         $_SESSION['logado'] = true;
         $_SESSION['usuario_id'] = $row['ID']; // Agora o ID está disponível
-        
-       
+        $usuario_id = $_SESSION['usuario_id'];
+
+        // Fechar o primeiro statement
+        $stmt->close();
+
+        // Consulta para verificar o valor da coluna 'classe' do usuário
+        $stmt_classe = $conn->prepare("SELECT classe FROM usuario WHERE id = ? LIMIT 1");
+        $stmt_classe->bind_param("i", $usuario_id);
+        $stmt_classe->execute();
+        $stmt_classe->bind_result($classe);
+        $stmt_classe->fetch();
+
+        if ($classe == 1) { // Verifica se o valor da coluna 'classe' é true (assumindo que seja 1 para true)
+            $_SESSION['classe'] = true;
+        } else {
+            $_SESSION['classe'] = false;
+        }
+
+        // Fechar o segundo statement
+        $stmt_classe->close();
+
+        // Redirecionar para a página principal
         header("Location: ../Página Principal/index.php");
         exit();
     } else {
@@ -30,9 +50,11 @@ if ($result->num_rows > 0) {
     echo "<script>alert('Email não cadastrado.');</script>";
 }
 
+// Fechar o statement e a conexão
 $stmt->close();
 $conn->close();
 ?>
+
 
 
 <!DOCTYPE html>

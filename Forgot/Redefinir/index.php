@@ -82,8 +82,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST["email"])) {
 				<div class="vLogo">
 				<a href="../index.html" class="seta"><img src=".. ../images/botao-de-seta-para-a-esquerda-do-teclado.png" alt=""></a>
 				<div class="login100-pic js-tilt" data-tilt>
-					<a href="../index.html" ><img src="../../images/logo escrita sem fundo.png" alt="IMG" class="logoL"></a>
-					<a href="../index.html" ><img src="../../images/texto-logo.png" alt="IMG" class="logoE"></a>
+					<a href="../../index.html" ><img src="../../images/logo escrita sem fundo.png" alt="IMG" class="logoL"></a>
+					<a href="../../index.html" ><img src="../../images/texto-logo.png" alt="IMG" class="logoE"></a>
 				</div>
 			</div>
 
