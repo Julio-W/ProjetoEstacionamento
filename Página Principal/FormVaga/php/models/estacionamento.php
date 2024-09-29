@@ -7,17 +7,20 @@ if (isset($_GET['cidade'])) {
     $cidade = $_GET['cidade'];
 
     // Consulta o banco de dados para buscar os estacionamentos na cidade selecionada
-    $sql = "SELECT Nome FROM estacionamento WHERE cidade = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $cidade);
-    $stmt->execute();
-    $result = $stmt->get_result();
+  // Atualize a query SQL para incluir o ID do estacionamento
+$sql = "SELECT ID, Nome FROM estacionamento WHERE cidade = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $cidade);
+$stmt->execute();
+$result = $stmt->get_result();
 
-    // Cria as opções do select
-    $options = "";
-    while ($row = $result->fetch_assoc()) {
-        $options .= "<option value='" . htmlspecialchars($row['ID']) . "'>" . htmlspecialchars($row['Nome']) . "</option>";
-    }
+// Cria as opções do select
+$options = "";
+while ($row = $result->fetch_assoc()) {
+    // Use o ID como valor e o Nome como texto visível no select
+    $options .= "<option value='" . htmlspecialchars($row['ID']) . "'>" . htmlspecialchars($row['Nome']) . "</option>";
+}
+
 
     echo $options;
 
