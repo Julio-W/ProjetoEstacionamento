@@ -16,6 +16,7 @@ if ($result->num_rows > 0) {
     if (password_verify($senha, $row['senha'])) {
         // Autenticação bem-sucedida, iniciar sessão e redirecionar
         session_start();
+		session_unset();
         $_SESSION['email'] = $email;
         $_SESSION['logado'] = true;
         $_SESSION['usuario_id'] = $row['ID']; // Agora o ID está disponível

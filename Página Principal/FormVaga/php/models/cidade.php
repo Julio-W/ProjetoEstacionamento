@@ -15,6 +15,7 @@ if (isset($_GET['estado'])) {
 
     // Cria as opções do select
     $options = "";
+    
     while ($row = $result->fetch_assoc()) {
         $options .= "<option value='" . htmlspecialchars($row['cidade']) . "'>" . htmlspecialchars($row['cidade']) . "</option>";
     }

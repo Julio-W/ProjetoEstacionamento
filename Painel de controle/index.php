@@ -47,7 +47,7 @@ session_start();
                 </li>
             </ul>
 
-            <a href="../Registro/index.php" ><button class="btn-default" >
+            <a href="../Registro/Gerente/index.php" ><button class="btn-default" >
                 Trocar gerente
             </button></a>
 
@@ -75,7 +75,7 @@ session_start();
                 </li>
             </ul>
 
-            <a href="../Registro/index.html"><button class="btn-default">
+            <a href="../Registro/Gerente/index.php"><button class="btn-default">
                 Concluir cadastro
             </button></a>
         </div>

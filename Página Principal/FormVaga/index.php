@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     <div class="nomeinput">
             Data da reserva
-          </div>
+            </div>
                     <div class="wrap-input100 validate-input">
                         <input class="input100" type="date" name="data" placeholder="Data" required>
                         <span class="focus-input100"></span>
