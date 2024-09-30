@@ -14,6 +14,22 @@ include("php/config/database.php");
     echo "<script>alert('Privilégio para acesso inválido');</script>";
 
 }
+
+
+$idUsuario = $_SESSION["usuario_id"];
+
+// Query para buscar o nome completo do usuário
+$sql = "SELECT nome FROM usuario WHERE id = ?";
+if ($stmt = $conn->prepare($sql)) {
+    $stmt->bind_param("i", $idUsuario); // Bind do ID do usuário
+    $stmt->execute();
+    $stmt->bind_result($nomeCompleto); // Vincula a variável para o resultado
+
+    // Executa a consulta e obtém o resultado
+    if ($stmt->fetch()) {
+        // Divide o nome completo em partes e pega o primeiro nome
+        $partesNome = explode(" ", $nomeCompleto);
+        $primeiroNome = $partesNome[0];}}
 //teste para ver se a classe é igual a true
       //  if ($_SESSION['classe'] === true) {
       //      echo '<script>alert("O Valor é válido")</script>';
@@ -106,9 +122,18 @@ include("php/config/database.php");
                     estacionamentos <span>direto</span> na sua tela
                 </h1>
 
-                <p class="description">
+                <?php 
+                if ($nomeCompleto!=null) {
+                   echo '<p class="description">
+                        Entre em contato, '.$primeiroNome.' 
+                        </p>';
+                }
+                else {
+                     echo '<p class="description">
                     Entre em contato
-                </p>
+                    </p>';}
+                
+                ?>
 
                 <div id="cta_buttons">
                     <a href="#menu" class="btn-default">

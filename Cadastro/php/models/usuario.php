@@ -25,6 +25,10 @@ include "../config/database.php";
         $sql = "INSERT INTO usuario (Email, Senha) VALUES ('$email', '$senha')";
         if ($conn->query($sql) === TRUE) {
             // Redireciona para a página padrão após o cadastro bem-sucedido
+                        
+            session_start(); // Inicia a sessão
+            session_unset(); // Limpa todas as variáveis de sessão
+           
             header("Location: ../../../Página Principal/index.php");
             exit();
         } else {

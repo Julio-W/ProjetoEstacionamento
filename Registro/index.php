@@ -110,6 +110,9 @@ $conn->close();
                         </span>
                     </div>
 
+                    <div class="nomeinput">
+            Data de Nascimento
+          </div>
                     <div class="wrap-input100 validate-input">
                         <input class="input100" type="date" name="datadenascimento" required>
                         <span class="focus-input100"></span>
