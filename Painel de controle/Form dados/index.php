@@ -1,3 +1,31 @@
+<?php
+session_start();
+include 'php/config/database.php';
+
+
+// Verificar se o usuário está logado
+if ($_SESSION['logado'] === false || $_SESSION['logado'] === null ) {
+   
+    
+  // Redireciona para a página padrão após o cadastro bem-sucedido
+  header("Location: ../../Login/index.php");
+  exit();}
+
+
+if ($_SESSION['classe'] === false || $_SESSION['classe'] === null ) {
+   
+    
+  // Redireciona para a página padrão se não for gerente
+ header("Location: ../../Página Principal/index.php?redirecionado=sim");
+  exit();
+}
+include"php/models/salvar_endereco.php";
+include "php/models/salvar_estacionamento.php";
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +81,7 @@
 				</div>
 			</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" id="formEstacionamento" method="post" action="../Form dados/index.php">
 					<span class="login100-form-title">
 						Dados do estacionamento
 					</span>
@@ -71,7 +99,23 @@
 						<input class="input100" type="number" name="vagasP" placeholder="Vagas preferênciais">
 						<span class="focus-input100"></span>
 					</div>
-					
+          <div class="texto1">
+          <p>Horario de abertura</p>
+          </div>
+          <div class="wrap-input100 validate-input">
+						<input class="input100" type="time" name="horaA" placeholder="Horário de abertura">
+						<span class="focus-input100"></span>
+					</div>
+          <div class="texto1">
+            <p>Horario de fechamento</p>
+            </div>
+          <div class="wrap-input100 validate-input">
+						<input class="input100" type="time" name="horaF" placeholder="Horario de fechamento">
+						<span class="focus-input100"></span>
+					</div>
+					<div class="container-login100-form-btn">
+			<a  ><button id="submitButton" type="submit" class="login100-form-btn">Confirmar</button></a>
+		</div>
 					</form>	
 
 					
@@ -99,7 +143,7 @@
       <div id="form-header">
         <h2>Coloque o endereço do seu estacionamento</h2>
       </div>
-      <form id="address-form">
+      <form id="address-form" method="post" action="../Form dados/index.php" > 
         <div class="row mb-3">
           <div class="form-floating">
             <input
@@ -188,6 +232,7 @@
             <select
               class="form-select shadow-none"
               id="region"
+              name="region"
               disabled
               required
               data-input
@@ -224,12 +269,12 @@
           </div>
         </div>
         <div class="container-login100-form-btn">
-			<a href="../Página Principal/index.html" ><button type="submit" onclick=" return false" class="login100-form-btn">
-				Confirmar
-			</button></a>
+			<a  ><button id="submitButton" type="submit" class="login100-form-btn">Confirmar</button></a>
 		</div>
       </form>
     </div>
+
+    
   
 
 
@@ -257,6 +302,7 @@
 	</script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+ 
 
 </body>
 </html>

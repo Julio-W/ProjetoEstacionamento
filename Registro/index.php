@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome']) && isset($_PO
         // Executa a consulta
         if ($stmt->execute()) {
             $_SESSION["CadastroFinalizado"] = true;
+            $_SESSION['classe'] = true;
             header("Location: ../Página Principal/index.php");
             exit();
         } else {
