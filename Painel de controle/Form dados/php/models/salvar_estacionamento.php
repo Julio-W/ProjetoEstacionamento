@@ -22,16 +22,20 @@ if (isset($_POST['nome'])) {
         $stmt_update = $conn->prepare($query_update);
         $stmt_update->bind_param("siissi", $nome, $vagas, $vagasP, $horaA, $horaF, $usuario_id);
         $stmt_update->execute();
-        header("../index.php");
+        header("Location: ../index.php");
         //exit(); 
     } else {
-        // Insere um novo estacionamento com os dados fornecidos
-        $query_insert = "INSERT INTO estacionamento (Nome, QuantidadeDeVagas, VagasPreferenciais, HorarioAbertura, HorarioFechamento, Gerente) VALUES (?, ?, ?, ?, ?, ?)";
+        // Insere um novo estacionamento com os dados fornecidos, incluindo LimiteComum e LimitePreferencial
+        $limiteComum = $vagas; // LimiteComum igual à quantidade de vagas
+        $limitePreferencial = $vagasP; // LimitePreferencial igual às vagas preferenciais
+        
+        $query_insert = "INSERT INTO estacionamento (Nome, QuantidadeDeVagas, VagasPreferenciais, HorarioAbertura, HorarioFechamento, LimiteComum, LimitePreferencial, Gerente) 
+                         VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt_insert = $conn->prepare($query_insert);
-        $stmt_insert->bind_param("siissi", $nome, $vagas, $vagasP, $horaA, $horaF, $usuario_id);
+        $stmt_insert->bind_param("siissiii", $nome, $vagas, $vagasP, $horaA, $horaF, $limiteComum, $limitePreferencial, $usuario_id);
         $stmt_insert->execute();
-        header("../index.php");
-       // exit();
+        header("Location: ../index.php");
+        // exit();
     }
 }
 ?>

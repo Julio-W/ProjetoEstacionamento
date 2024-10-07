@@ -36,6 +36,101 @@ html {
     width: 100%;
     height: 99%;
 }
+.tabela{
+    
+h2{
+    text-align: center;
+}
+
+
+
+    table {
+    width: 100%; /* Tabela ocupa 100% da largura do contêiner pai */
+    border-collapse: collapse; /* Remove o espaço entre as bordas das células */
+    margin-bottom: 20px; /* Espaço abaixo da tabela */
+}
+
+/* Cabeçalho da tabela */
+thead th {
+    background-color: #095D81; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto do cabeçalho */
+    padding: 12px; /* Espaçamento interno das células do cabeçalho */
+    text-align: left; /* Alinhamento do texto */
+    font-weight: bold; /* Texto em negrito */
+    border-bottom: 3px solid #21C7BD; /* Borda inferior do cabeçalho */
+}
+
+/* Linhas da tabela */
+tbody tr {
+    transition: background-color 0.3s ease; /* Efeito de transição ao passar o mouse */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #82aeb1; /* Cor de fundo para linhas pares */
+}
+
+/* Colunas da tabela */
+td {
+    padding: 10px; /* Espaçamento interno das células */
+    border-bottom: 1px solid #ddd; /* Borda inferior das células */
+}
+
+/* Efeito de hover nas linhas da tabela */
+tbody tr:hover {
+    background-color: #21C7BD; /* Cor de fundo ao passar o mouse */
+    color: white; /* Cor do texto ao p  assar o mouse */
+}
+
+/* Botão de finalizar */
+button {
+    background-color: #095D81; /* Cor de fundo do botão */
+    color: white; /* Cor do texto do botão */
+    border: none; /* Remove a borda padrão do botão */
+    padding: 8px 16px; /* Espaçamento interno do botão */
+    border-radius: 4px; /* Arredonda os cantos do botão */
+    cursor: pointer; /* Cursor de ponteiro ao passar sobre o botão */
+    transition: background-color 0.3s ease; /* Efeito de transição ao passar o mouse */
+}
+
+button:hover {
+    background-color: #21C7BD; /* Cor de fundo do botão ao passar o mouse */
+}
+
+/* Tabela responsiva */
+@media (max-width: 768px) {
+    table, thead, tbody, th, td, tr {
+        display: block; /* Tabela se comporta como um bloco */
+    }
+    
+    thead {
+        display: none; /* Oculta o cabeçalho em dispositivos menores */
+    }
+    
+    tbody tr {
+        margin-bottom: 20px; /* Espaçamento entre as linhas da tabela */
+        padding: 10px; /* Espaçamento interno das linhas */
+        background-color: white; /* Cor de fundo das linhas */
+        border-radius: 8px; /* Arredonda os cantos das linhas */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra nas linhas */
+    }
+    
+    td {
+        display: flex; /* Exibe as células como flex */
+        justify-content: space-between; /* Espaço entre o conteúdo */
+        padding: 8px; /* Espaçamento interno das células */
+        border: none; /* Remove borda das células */
+        border-bottom: 1px solid #ddd; /* Borda inferior das células */
+    }
+
+    td:before {
+        content: attr(data-label); /* Mostra o rótulo para dispositivos móveis */
+        font-weight: bold; /* Texto em negrito para os rótulos */
+        text-transform: uppercase; /* Transforma o texto em maiúsculas */
+        color: #095D81; /* Cor do texto dos rótulos */
+    }
+}
+
+}
 
 a {
     text-decoration: none;

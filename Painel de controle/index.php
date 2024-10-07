@@ -1,5 +1,6 @@
 <?php
 session_start();
+include "php/config/database.php";
   if ($_SESSION['classe'] === false || $_SESSION['classe'] === null ) {
    
     
@@ -7,6 +8,48 @@ session_start();
    header("Location: ../Página Principal/index.php?redirecionado=sim");
     exit();
   }
+
+
+
+  $usuario_id = $_SESSION['usuario_id'];
+
+  // Consulta SQL para verificar se o ID do usuário é gerente de algum estacionamento
+  $sql = "SELECT Nome, QuantidadeDeVagas, VagasPreferenciais, LimiteComum, LimitePreferencial 
+          FROM estacionamento 
+          WHERE gerente = ?";
+
+  // Preparar a declaração SQL
+  if ($stmt = $conn->prepare($sql)) {
+      // Bind do parâmetro
+      $stmt->bind_param("i", $usuario_id);
+
+      // Executar a declaração
+      $stmt->execute();
+
+      // Vincular os resultados às variáveis
+      $stmt->bind_result($Nome, $QuantidadeDeVagas, $VagasPreferenciais, $LimiteComum, $LimitePreferencial);
+
+      // Verificar se há resultado e obter os valores
+      if ($stmt->fetch()) {
+          // Variáveis agora contêm os valores necessários
+         
+      } else {
+          // Nenhum estacionamento gerenciado por este usuário
+        $Nome="null";
+        $QuantidadeDeVagas="null";
+        $VagasPreferenciais="null";
+        $LimiteComum="null";
+        $LimitePreferencial="null";
+        
+      }
+
+      // Fechar a declaração
+      $stmt->close();
+  } 
+
+
+
+
                    ?>                                                     
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -134,22 +177,36 @@ session_start();
 
         <div id="dishes">
             <div class="dish">
-                <p>Nome:</p>
+                <p>Nome:<?php echo "</br> $Nome"?></p>
             </div>
             <div class="dish">
-                <p>Vagas: </p>
+                <p>Vagas:<?php echo "</br> $QuantidadeDeVagas"?> </p>
             </div>
             <div class="dish">
-                <p>Vagas totais preferênciais:</p>
+                <p>Vagas totais preferênciais:<?php echo "</br> $VagasPreferenciais"?></p>
             </div>
             <div class="dish">
-                <p>Vagas disponíveis:</p>
+                <p>Vagas disponíveis:<?php echo "</br> $LimiteComum"?></p>
             </div>
             <div class="dish">
-                <p>Vagas preferênciais disponíveis:</p>
+                <p>Vagas preferênciais disponíveis:<?php echo "</br> $LimitePreferencial"?></p>
             </div>
 
-        </section>       
+        </section>   
+        
+        <section id="menu">
+        <h2 class="section-title">Gerenciamento de Vagas</h2>
+        <h3 class="section-subtitle">Altere e controle as vagas do estacionamento</h3>
+        <br>
+
+        <div class="tabela">
+
+       
+<!-- Aqui fica presente todo o código para a tabela de ver e controlar a vaga-->
+<?php include "php/models/vaga.php" ?> </div>
+
+</section>  
+  
 
     <section id="testimonials">
         <img src="images/pensativo.png" id="testimonial_chef" alt="">
