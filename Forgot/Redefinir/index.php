@@ -29,6 +29,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && !empty($_POST["email"])) {
             if ($stmt_update->execute()) {
                 echo "<script>alert('Senha atualizada com sucesso.');</script>";
                 // Redirecionar após a atualização
+				session_start();	
+				session_unset();
                 header("Location: ../../Página Principal/index.php");
                 exit();
             } else {

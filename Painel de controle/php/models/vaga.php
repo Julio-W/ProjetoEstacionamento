@@ -66,6 +66,7 @@ if (isset($_SESSION['usuario_id'])) {
             echo "Nenhum registro de vaga válido encontrado para este estacionamento.";
         }
     } else {
+        error_reporting(0);
         echo "Nenhum estacionamento encontrado para o gerente logado.";
     }
     

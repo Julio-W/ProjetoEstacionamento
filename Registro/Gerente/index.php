@@ -39,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['nome'], $_POST['cpf']
             if ($stmt->execute()) {
                 // Redireciona após o sucesso
                 $_SESSION["CadastroFinalizado"] = true;
+                $_SESSION['classe'] = true;
                 header("Location: ../../Página Principal/index.php");
                 exit();
             } else {
