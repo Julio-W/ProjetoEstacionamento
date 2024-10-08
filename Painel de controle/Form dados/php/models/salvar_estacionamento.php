@@ -26,7 +26,7 @@ if (isset($_POST['nome'])) {
         //exit(); 
     } else {
         // Insere um novo estacionamento com os dados fornecidos, incluindo LimiteComum e LimitePreferencial
-        $limiteComum = $vagas; // LimiteComum igual à quantidade de vagas
+        $limiteComum = $vagas-$vagasP; // LimiteComum igual à quantidade de vagas menos as preferenciais
         $limitePreferencial = $vagasP; // LimitePreferencial igual às vagas preferenciais
         
         $query_insert = "INSERT INTO estacionamento (Nome, QuantidadeDeVagas, VagasPreferenciais, HorarioAbertura, HorarioFechamento, LimiteComum, LimitePreferencial, Gerente) 

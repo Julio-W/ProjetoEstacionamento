@@ -6,53 +6,8 @@ if (empty($_SESSION['logado'])) {
     header("Location: ../../Login/index.php");
     exit();
 }
+include("php/models/vaga.php");
 
-$idUsuario = $_SESSION["usuario_id"];
-
-// Verifique se o formulário foi enviado corretamente
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    // Recebendo os valores do formulário
-    $estacionamento = (int)$_POST['estacionamento'];
-    $modelo = $_POST['modelo'];
-    $horario_inicio = $_POST['entrada']; // Deve ser no formato HH:MM
-    $horario_final = $_POST['saida'];     // Deve ser no formato HH:MM
-    $placa = $_POST['placa'];
-    $preferencial = ($_POST['preferencial'] === 'sim') ? 1 : 0; // Converte 'sim' ou 'nao' para booleano
-    $data = $_POST['data']; // Pode não ser necessário se não está sendo usada
-    $validade = true;
-
-    // Verifique se os horários estão no formato correto
-    if (!preg_match("/^\d{2}:\d{2}$/", $horario_inicio) || !preg_match("/^\d{2}:\d{2}$/", $horario_final)) {
-        echo "Formato de horário inválido. Use HH:MM.";
-        exit();
-    }
-
-    // Query SQL para inserir os dados na tabela vaga
-    $sql = "INSERT INTO vaga (ID, Estacionamento, Modelo, Horario_entrada, Horario_saida, Validade, Data, Placa, Preferencial) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    // Preparando o statement para evitar SQL injection
-    if ($stmt = $conn->prepare($sql)) {
-        // Liga os parâmetros no formato correto
-        $stmt->bind_param("iissssssi", $idUsuario, $estacionamento, $modelo, $horario_inicio, $horario_final, $validade, $data, $placa, $preferencial);
-
-        // Executa a query
-        if ($stmt->execute()) {
-            echo "Vaga cadastrada com sucesso!";
-        } else {
-            echo "Erro ao cadastrar vaga: " . $stmt->error;
-        }
-
-        // Fecha o statement
-        $stmt->close();
-    } else {
-        echo "Erro ao preparar a consulta: " . $conn->error;
-    }
-
-    // Fecha a conexão com o banco de dados
-    $conn->close();
-}
 ?>
 
 
