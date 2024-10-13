@@ -3,23 +3,7 @@ session_start();
 include 'php/config/database.php';
 
 
-// Verificar se o usuário está logado
-if ($_SESSION['logado'] === false || $_SESSION['logado'] === null ) {
-   
-    
-  // Redireciona para a página padrão após o cadastro bem-sucedido
-  header("Location: ../../Login/index.php");
-  exit();}
-
-
-if ($_SESSION['classe'] === false || $_SESSION['classe'] === null ) {
-   
-    
-  // Redireciona para a página padrão se não for gerente
- header("Location: ../../Página Principal/index.php?redirecionado=sim");
-  exit();
-}
-include"php/models/salvar_endereco.php";
+include "php/models/salvar_endereco.php";
 include "php/models/salvar_estacionamento.php";
 
 
@@ -97,6 +81,10 @@ include "php/models/salvar_estacionamento.php";
 					</div>
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="number" name="vagasP" placeholder="Vagas preferênciais">
+						<span class="focus-input100"></span>
+					</div>
+          <div class="wrap-input100 validate-input">
+						<input class="input100" type="number" name="ValorHora" placeholder="Valor da Hora">
 						<span class="focus-input100"></span>
 					</div>
           <div class="texto1">

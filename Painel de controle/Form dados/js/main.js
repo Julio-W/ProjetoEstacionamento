@@ -115,7 +115,8 @@ closeButton.addEventListener("click", () => toggleMessage());
 
 // Save address
 addressForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+  // Retire o bloqueio padrão de envio do formulário
+  // e.preventDefault();
 
   toggleLoader();
 
