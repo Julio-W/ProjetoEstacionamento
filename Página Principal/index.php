@@ -362,15 +362,15 @@ if ($stmt = $conn->prepare($sql)) {
             </span>
 
             <div class="social-media-buttons">
-                <a href="">
+                <a href="https://wa.me/+553899277387">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
 
-                <a href="">
+                <a href="https://www.instagram.com/joao_italo__/?hl=pt">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
-                <a href="">
+                <a href="https://www.facebook.com/">
                     <i class="fa-brands fa-facebook"></i>
                 </a>
             </div>
